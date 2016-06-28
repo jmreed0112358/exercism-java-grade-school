@@ -118,6 +118,42 @@ public class SchoolTest {
   }
 
   @Test
+  public void test_grade_InvalidGrade_Zero_ThrowsException() {
+	  try {
+		  school.grade( 0 );
+		  fail("Supposed to catch InvalidParameterException");
+	  } catch ( InvalidParameterException ipe ) {
+		  
+	  } catch ( Exception e ) {
+		  fail("Expected to catch InvalidParameterException");
+	  }
+  }
+  
+  @Test
+  public void test_grade_Invalid_Grade_Negative_ThrowsException() {
+	  try {
+		  school.grade( -8 );
+		  fail("Supposed to catch InvalidParameterException");
+	  } catch ( InvalidParameterException ipe ) {
+		  
+	  } catch ( Exception e ) {
+		  fail("Expected to catch InvalidParameterException");
+	  }
+  }
+  
+  @Test
+  public void test_grade_InvalidGrade_Huge_ThrowsException() {
+	  try {
+		  school.grade( 100 );
+		  fail("Supposed to catch InvalidParameterException");
+	  } catch ( InvalidParameterException ipe ) {
+		  
+	  } catch ( Exception e ) {
+		  fail("Expected to catch InvalidParameterException");
+	  }
+  }
+  
+  @Test
   public void sortsSchool() {
     school.add("Jennifer", 4);
     school.add("Kareem", 6);
