@@ -1,8 +1,10 @@
 package gradeschool;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
+import java.security.InvalidParameterException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +13,66 @@ import java.util.Map;
 public class SchoolTest {
   private final School school = new School();
 
+  @Test
+  public void test_add_EmptyString_ThrowsException() {
+	  try {
+		  school.add( "", 1 );
+		  fail("Supposed to catch InvalidParameterException");
+	  } catch ( InvalidParameterException ipe ) {
+		  
+	  } catch ( Exception e ) {
+		  fail("Expected to catch InvalidParameterException");
+	  }
+  }
+  
+  @Test
+  public void test_add_InvalidName_Null_ThrowsException() {
+	  try {
+		  school.add( null, 8 );
+		  fail("Supposed to catch NullPointerException");
+	  } catch ( NullPointerException ipe ) {
+		  
+	  } catch ( Exception e ) {
+		  fail("Expected to catch NullPointerException");
+	  }
+  }
+  
+  @Test
+  public void test_add_InvalidGrade_Zero_ThrowsException() {
+	  try {
+		  school.add( "Foo", 0 );
+		  fail("Supposed to catch InvalidParameterException");
+	  } catch ( InvalidParameterException ipe ) {
+		  
+	  } catch ( Exception e ) {
+		  fail("Expected to catch InvalidParameterException");
+	  }
+  }
+  
+  @Test
+  public void test_add_InvalidGrade_Negative_ThrowsException() {
+	  try {
+		  school.add( "Foo", -8 );
+		  fail("Supposed to catch InvalidParameterException");
+	  } catch ( InvalidParameterException ipe ) {
+		  
+	  } catch ( Exception e ) {
+		  fail("Expected to catch InvalidParameterException");
+	  }
+  }
+  
+  @Test
+  public void test_add_InvalidGrade_HugeNumber_ThrowsException() {
+	  try {
+		  school.add( "Foo", 100 );
+		  fail("Supposed to catch InvalidParameterException");
+	  } catch ( InvalidParameterException ipe ) {
+		  
+	  } catch ( Exception e ) {
+		  fail("Expected to catch InvalidParameterException");
+	  }
+  }
+  
   @Test
   public void startsWithNoStudents() {
     assertThat(school.db()).isEmpty();
